@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: SEE LICENSE IN LICENSE
 pragma solidity ^0.8.13;
 
-import "./IERC20.sol";
+import {IERC20} from "./ERC20.sol";
 
 contract Vault {
     IERC20 public immutable token;
