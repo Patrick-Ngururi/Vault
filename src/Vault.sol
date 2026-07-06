@@ -7,7 +7,7 @@ contract Vault {
     IERC20 public immutable token;
 
     uint public totalSupply;
-    mapping (address => uint) public  balamceOf;
+    mapping (address => uint) public  balanceOf;
 
     constructor(address _token) {
         token = IERC20(_token);
@@ -15,12 +15,12 @@ contract Vault {
 
     function _mint(address _to, uint _amount) private {
         totalSupply += _amount;
-        balamceOf[_to] += amount;
+        balanceOf[_to] += amount;
     }
 
     function _burn(address _from, uint _amount) private {
         totalSupply -= _amount;
-        balamceOf[_to] -= amount;
+        balanceOf[_to] -= amount;
     }
 
     function deposit(uint _amount) external {
