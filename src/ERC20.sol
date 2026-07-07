@@ -26,7 +26,7 @@ contract ERC20 is IERC20 {
     mapping(address => mapping(address => uint256)) public allowance;
     string public name = "Test";
     string public symbol = "Test";
-    uint8 public decimaals = 18;
+    uint8 public decimals = 18;
 
     function transfer(address recipient, uint256 amount) external returns (bool) {
         balanceOf[msg.sender] -= amount;
