@@ -15,12 +15,12 @@ contract Vault {
 
     function _mint(address _to, uint256 _amount) private {
         totalSupply += _amount;
-        balanceOf[_to] += amount;
+        balanceOf[_to] += _amount;
     }
 
     function _burn(address _from, uint256 _amount) private {
         totalSupply -= _amount;
-        balanceOf[_to] -= amount;
+        balanceOf[_from] += _amount;
     }
 
     function deposit(uint256 _amount) external {
@@ -37,7 +37,7 @@ contract Vault {
 
         uint256 shares;
         if (totalSupply == 0) {
-            shares = amount;
+            shares = _amount;
         } else {
             shares = (_amount * totalSupply) / token.balanceOf(address(this));
         }
