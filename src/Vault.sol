@@ -23,6 +23,23 @@ contract Vault {
         balanceOf[_from] += _amount;
     }
 
+    /** 
+     * Inflation attack
+     * 
+     * 1. User 0 deposits 1
+     * 2. User 0 donates 100 * 1e18
+     * 3. User 1 deposits 100 * 1e18 -> 0 shares minted
+     * 4. User 0 withdraws 200 * 1e18 + 1
+     * 
+     *    | balance        | User 0 shares | user 1 shares | total supply |
+     * 1. |              1 |             1 |             0 |            1 |
+     * 2. | 100 * 1e18 + 1 |             1 |             0 |            1 |
+     * 3. | 200 * 1e18 + 1 |             1 |             0 |            1 |
+     * 4. |              0 |             0 |             0 |            0 |
+     * 
+     *  User 1 shares = 100 * 1e18 * 1 / (100 * 1e18 + 1) = 0 
+     */
+    
     function deposit(uint256 _amount) external {
         /**
          * a = amount
