@@ -6,6 +6,4 @@ import {console2} from "lib/forge-std/src/console2.sol";
 import {Vault} from "../src/Vault.sol";
 import {IERC20} from "../src/ERC20.sol";
 
-contract VaultTest is Test {
-    
-}
+contract VaultTest is Test {}
