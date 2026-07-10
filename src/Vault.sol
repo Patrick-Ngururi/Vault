@@ -46,7 +46,7 @@ contract Vault {
         token.transferFrom(msg.sender, address(this), _amount);
     }
 
-    function withdraw(uint256 _shares) external {
+    function withdraw(uint256 _shares) external returns (uint256) {
         /**
          * a = amount
          * B = balance of token before deposit
@@ -61,5 +61,6 @@ contract Vault {
         uint256 amount = (_shares * token.balanceOf(address(this))) / totalSupply;
         _burn(msg.sender, _shares);
         token.transfer(msg.sender, amount);
+        return amount; 
     }
 }
