@@ -25,7 +25,7 @@ contract VaultTest is Test {
         }
     }
 
-    function print() private {
+    function print() private view {
         console2.log("vault total supply", vault.totalSupply());
         console2.log("vault balance", token.balanceOf(address(vault)));
         uint256 shares0 = vault.balanceOf(users[0]);
