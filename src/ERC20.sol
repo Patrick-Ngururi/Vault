@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.10;
 
+uint8 constant DECIMALS = 18;
+
 interface IERC20 {
     // External functions
     function totalSupply() external view returns (uint256);
@@ -20,13 +22,13 @@ interface IERC20 {
     event Approval(address indexed owner, address indexed spender, uint256 amount);
 }
 
-contract ERC20 is IERC20 {
+contract Token is IERC20 {
     uint256 public totalSupply;
     mapping(address => uint256) public balanceOf;
     mapping(address => mapping(address => uint256)) public allowance;
     string public name = "Test";
     string public symbol = "Test";
-    uint8 public decimals = 18;
+    uint8 public decimals = DECIMALS;
 
     function transfer(address recipient, uint256 amount) external returns (bool) {
         balanceOf[msg.sender] -= amount;
@@ -49,10 +51,10 @@ contract ERC20 is IERC20 {
         return true;
     }
 
-    function mint(uint256 amount) external {
-        balanceOf[msg.sender] += amount;
+    function mint(address dst, uint256 amount) external {
+        balanceOf[dst] += amount;
         totalSupply += amount;
-        emit Transfer(address(0), msg.sender, amount);
+        emit Transfer(address(0), dst, amount);
     }
 
     function burn(uint256 amount) external {
